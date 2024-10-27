@@ -1,0 +1,70 @@
+(ii).
+
+CREATE DATABASE Studata;
+
+CREATE TABLE Courses (
+    course_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    lecturer_name VARCHAR(100));
+
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    city VARCHAR(100),
+    course_id INT,
+    FOREIGN KEY (course_id) REFERENCES Courses(course_id));
+
+(iii).
+
+INSERT INTO Course (course_id, name, lecturer_name) VALUES
+(1, 'Web Development', 'M.M.Herath'),
+(2, 'Graphic Design', 'J.S.V.Piyasena'),
+(3, 'Mobile App Developmwnt', 'K.K.S. Dias'),
+(4, 'Java', 'U.H.S.Perera');
+
+INSERT INTO Students (student_id, name, city, course_id) VALUES
+(1, 'Kasun Gamage', 'Kandy', 2),
+(2, 'Daniel Sam', 'Jaffna', 3),
+(3, 'Hansi Silva', 'Colombo', 1),
+(4, 'Ranindu Herath', 'Matara', 3),
+(5, 'Praneeth Vijesinghe', 'Kandy', 4),
+(3, 'Nuwani Herath', 'Rathnapura', 1);
+
+
+(iv)
+
+A.
+
+select * from Students;
+
+1	Kasun Gamage		Kandy		2
+2	Daniel Sam		Jaffna		3
+3	Hansi Silva		Colombo		1
+4	Ranindu Herath		Matara		3
+5	Praneeth Vijesinghe	Kandy		4
+6	Nuwani Herath		Rathnapura	1
+
+
+B.
+
+SELECT student_id, name, city FROM Students WHERE city = 'Kandy';
+
+1	Kasun Gamage		Kandy
+5	Praneeth Vijesinghe	Kandy
+
+
+C.
+
+UPDATE Students SET city = 'Galle' WHERE student_id = 4;
+
+
+D.
+
+SELECT s.*, c.name AS course_name FROM Students s JOIN Course c ON s.course_id = c.course_id;
+
+1	Kasun Gamage		Kandy		2	Graphic Design
+2	Daniel Sam		Jaffna		3	Mobile App Developmwnt
+3	Hansi Silva		Colombo		1	Web Development
+4	Ranindu Herath		Galle		3	Mobile App Developmwnt
+5	Praneeth Vijesinghe	Kandy		4	Java
+6	Nuwani Herath		Rathnapura	1	Web Development
